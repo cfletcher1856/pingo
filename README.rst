@@ -64,6 +64,7 @@ Arduino Yún           on-board                 experim. requires `Bridge sketch
 BeagleBone Black      on-board ``bbb``         experim.
 Intel Galileo Gen 2   on-board ``galileo``     level 2  requires Intel IoT Dev Kit `mraa`_ library
 LinkSprite pcDuino    on-board ``pcduino``     level 1
+pyMcu                 on-board ``pymcuboard``  experim. requires `pymcu`_ library
 RaspberryPi           on-board ``rpi``         level 0  requires `RPi.GPIO`_ on the Raspberry Pi
 SECO UDOO             on-board ``udoo``        level 0
 ===================== ======== =============== ======== ==================================================
@@ -72,8 +73,9 @@ SECO UDOO             on-board ``udoo``        level 0
 .. _Bridge sketch: http://arduino.cc/en/Reference/YunBridgeLibrary
 .. _RPi.GPIO: https://pypi.python.org/pypi/RPi.GPIO
 .. _mraa: https://github.com/intel-iot-devkit/mraa
+.. _pymcu: https://pypi.python.org/pypi/pymcu
 
-We are also interested in supporting: Banana Pi, Cubietech Cubieboard, SolidRun HummingBoard, TI MSP430 (via `firmata protocol`_ ). 
+We are also interested in supporting: Banana Pi, Cubietech Cubieboard, SolidRun HummingBoard, TI MSP430 (via `firmata protocol`_ ).
 
 In a addition, Pingo implements ``ghost``, a mock software-only board for testing the API.
 

@@ -58,6 +58,11 @@ def MyBoard():
         # TODO decide which board return
         return pingo.ghost.GhostBoard()
 
+    elif machine == 'i686':
+        if 'ttyUSB0' in os.listdir('/dev/'):
+            return pingo.pymcuboard.Pymcuboard()
+
+
     elif machine == 'i586':
         # TODO: assume it's a Galileo2
         # FIXME: detect Galileo gen1. and Edison

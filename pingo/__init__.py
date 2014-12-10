@@ -26,7 +26,7 @@ import udoo  # noqa
 import pcduino  # noqa
 import arduino  # noqa
 import bbb  # noqa
-import pymcu  # noqa
+import pymcuboard  # noqa
 
 # resources
 import detect  # noqa
