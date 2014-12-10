@@ -174,7 +174,7 @@ class PwmOutputCapable(object):
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def _set_pwm_mode(self, pin):
+    def _set_pwm_mode(self, pin, mode):
         """Abstract method to be implemented by each ``Board`` subclass."""
 
     @abstractmethod

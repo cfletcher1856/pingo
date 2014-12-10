@@ -1,6 +1,7 @@
 import os
 import pingo
 from pingo.board import Board, AnalogInputCapable, PwmOutputCapable, DigitalPin, AnalogPin, PwmPin
+from string import ascii_lowercase as letters
 
 
 PIN_STATES = {
@@ -32,7 +33,7 @@ class Pymcuboard(Board, AnalogInputCapable, PwmOutputCapable):
                 for location in range(1, 20)] +
             [AnalogPin(self, 'A%s' % location, resolution=10)
                 for location in range(1, 7)] +
-            [PwmPin(self, location)
+            [PwmPin(self, 'P%s' % location)
                 for location in range(1, 6)
             ]
         )
@@ -53,6 +54,10 @@ class Pymcuboard(Board, AnalogInputCapable, PwmOutputCapable):
         if 'ttyUSB0' in os.listdir('/dev/'):
             return os.path.join(os.path.sep, 'dev', 'ttyUSB0')
 
+    def clean_pin_location(self, pin):
+        n = ''.join(d for d in pin.lower() if not d in letters)
+        return int(n)
+
     def info(self):
         print self.board.mcuInfo()
 
@@ -61,7 +66,6 @@ class Pymcuboard(Board, AnalogInputCapable, PwmOutputCapable):
 
     def _set_pin_mode(self, pin, mode):
         if isinstance(pin, DigitalPin):
-            print pin.__dict__
             self.board.digitalState(
                 pin.location,
                 PIN_MODES[mode]
@@ -89,14 +93,20 @@ class Pymcuboard(Board, AnalogInputCapable, PwmOutputCapable):
         pin_id = int(pin.location[1:])
         return self.board.analog_read(pin_id)
 
-    def _set_pwm_mode(self, pin):
-        pass
+    def _set_pwm_mode(self, pin, mode):
+            self.board.pwmOn(
+                self.clean_pin_location(pin.location),
+            )
 
     def _get_pwm_duty_cycle(self, pin):
         pass
 
     def _set_pwm_duty_cycle(self, pin, value):
-        pass
+        if isinstance(pin, PwmPin):
+            self.board.pwmDuty(
+                pin.location,
+                value
+            )
 
 # Available Digital Pins  : 1 - 19
 # Available Analog Pins   : 1 - 6
